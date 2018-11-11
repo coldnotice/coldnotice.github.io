@@ -90,19 +90,19 @@
 
 
 
-<meta name="description" content="《渗透测试实践指南》笔记 待更……">
+<meta name="description" content="待更……">
 <meta name="keywords" content="PENTEST">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《渗透测试实践指南》笔记">
 <meta property="og:url" content="http://yoursite.com/2018/11/11/《渗透测试实践指南》笔记/index.html">
 <meta property="og:site_name" content="cold">
-<meta property="og:description" content="《渗透测试实践指南》笔记 待更……">
+<meta property="og:description" content="待更……">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/penetration_testing.jpg">
-<meta property="og:updated_time" content="2018-11-11T10:21:07.471Z">
+<meta property="og:updated_time" content="2018-11-11T10:26:49.496Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《渗透测试实践指南》笔记">
-<meta name="twitter:description" content="《渗透测试实践指南》笔记 待更……">
+<meta name="twitter:description" content="待更……">
 <meta name="twitter:image" content="http://yoursite.com/images/penetration_testing.jpg">
 
 
@@ -377,37 +377,37 @@
       
 
       
-        <h1 id="《渗透测试实践指南》笔记"><a href="#《渗透测试实践指南》笔记" class="headerlink" title="《渗透测试实践指南》笔记"></a>《渗透测试实践指南》笔记</h1><p><img src="/images/penetration_testing.jpg" alt=""></p>
+        <p><img src="/images/penetration_testing.jpg" alt=""></p>
 <p>待更……</p>
 <a id="more"></a>
 <hr>
-<h2 id="一-侦查"><a href="#一-侦查" class="headerlink" title="一. 侦查"></a>一. 侦查</h2><ul>
+<h1 id="一-侦查"><a href="#一-侦查" class="headerlink" title="一. 侦查"></a>一. 侦查</h1><ul>
 <li>IP 列表 </li>
 <li>开源情报</li>
-<li>主动、被动<h3 id="1-HTTrack"><a href="#1-HTTrack" class="headerlink" title="1. HTTrack"></a>1. HTTrack</h3>网站复制机 : <code>httrack</code></li>
+<li>主动、被动<h2 id="1-HTTrack"><a href="#1-HTTrack" class="headerlink" title="1. HTTrack"></a>1. HTTrack</h2>网站复制机 : <code>httrack</code></li>
 </ul>
-<h3 id="2-Google指令"><a href="#2-Google指令" class="headerlink" title="2. Google指令"></a>2. Google指令</h3><ol>
+<h2 id="2-Google指令"><a href="#2-Google指令" class="headerlink" title="2. Google指令"></a>2. Google指令</h2><ol>
 <li><code>site:</code></li>
 <li><code>intitle:</code><br> <code>alintitle:index of</code>:web服务器上所有可用的索引目录列表</li>
 <li><code>inurl:admin/login/logan/signin/signon/Forgetpassword/Forget/Reset</code>:包含某些特定字符网站，发现网站管理或设置页面</li>
 <li><code>cache:</code>:网页快照</li>
 <li><code>filetype:</code></li>
 </ol>
-<h3 id="3-The-Harvester"><a href="#3-The-Harvester" class="headerlink" title="3. The Harvester"></a>3. The Harvester</h3><p>搜索某网站的电子邮箱、子域名和主机</p>
+<h2 id="3-The-Harvester"><a href="#3-The-Harvester" class="headerlink" title="3. The Harvester"></a>3. The Harvester</h2><p>搜索某网站的电子邮箱、子域名和主机</p>
 <p><code>theharvester -d target_domin -l _number -b google/LinkedIn/(all)</code></p>
-<h3 id="4-whois"><a href="#4-whois" class="headerlink" title="4. whois"></a>4. whois</h3><p>收集与目标网站相关的额外信息：ip、DNS、地址、电话等</p>
-<h3 id="5-Netcraft"><a href="#5-Netcraft" class="headerlink" title="5. Netcraft"></a>5. Netcraft</h3><p>ip、DNS、web服务器操作系统</p>
-<h3 id="6-host"><a href="#6-host" class="headerlink" title="6. host"></a>6. host</h3><p>主机名——ip翻译</p>
-<h3 id="7-NS-lookup、Dig、fierce"><a href="#7-NS-lookup、Dig、fierce" class="headerlink" title="7. NS lookup、Dig、fierce"></a>7. NS lookup、Dig、fierce</h3><p>DNS服务器中的主机记录</p>
+<h2 id="4-whois"><a href="#4-whois" class="headerlink" title="4. whois"></a>4. whois</h2><p>收集与目标网站相关的额外信息：ip、DNS、地址、电话等</p>
+<h2 id="5-Netcraft"><a href="#5-Netcraft" class="headerlink" title="5. Netcraft"></a>5. Netcraft</h2><p>ip、DNS、web服务器操作系统</p>
+<h2 id="6-host"><a href="#6-host" class="headerlink" title="6. host"></a>6. host</h2><p>主机名——ip翻译</p>
+<h2 id="7-NS-lookup、Dig、fierce"><a href="#7-NS-lookup、Dig、fierce" class="headerlink" title="7. NS lookup、Dig、fierce"></a>7. NS lookup、Dig、fierce</h2><p>DNS服务器中的主机记录</p>
 <p>1.NS lookup：</p>
 <p><pre><br>nslookup</pre></p>
 <blockquote>
 <p>server 8.8.8.8<br>set type = any / mx(邮件)<br>target_domin<br><br>2.Dig：<br><code>dig @target_ip -t AXFR(区域传输)</code></p>
 </blockquote>
 <p>3.fierce：<br><code>fierce -dns target_domin</code></p>
-<h3 id="8-MetaGooFil"><a href="#8-MetaGooFil" class="headerlink" title="8. MetaGooFil"></a>8. MetaGooFil</h3><p>提取元数据</p>
+<h2 id="8-MetaGooFil"><a href="#8-MetaGooFil" class="headerlink" title="8. MetaGooFil"></a>8. MetaGooFil</h2><p>提取元数据</p>
 <p><code>metagoofil -d target_domin -t pdf/doc... -n _number -o storage_dir -f output_file</code></p>
-<h3 id="9-其它"><a href="#9-其它" class="headerlink" title="9. 其它"></a>9. 其它</h3><p>有关目标的完整档案</p>
+<h2 id="9-其它"><a href="#9-其它" class="headerlink" title="9. 其它"></a>9. 其它</h2><p>有关目标的完整档案</p>
 <ol>
 <li><a href="https://www.treatagent.com" target="_blank" rel="noopener">ThreatAgent Drone</a></li>
 <li><a href="http://www.informatica64.com/foca.aspx" target="_blank" rel="noopener">FOCA</a></li>
@@ -612,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#《渗透测试实践指南》笔记"><span class="nav-number">1.</span> <span class="nav-text">《渗透测试实践指南》笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-侦查"><span class="nav-number">1.1.</span> <span class="nav-text">一. 侦查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-HTTrack"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. HTTrack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Google指令"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. Google指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-The-Harvester"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. The Harvester</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-whois"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. whois</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Netcraft"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. Netcraft</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-host"><span class="nav-number">1.1.6.</span> <span class="nav-text">6. host</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-NS-lookup、Dig、fierce"><span class="nav-number">1.1.7.</span> <span class="nav-text">7. NS lookup、Dig、fierce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-MetaGooFil"><span class="nav-number">1.1.8.</span> <span class="nav-text">8. MetaGooFil</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-其它"><span class="nav-number">1.1.9.</span> <span class="nav-text">9. 其它</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-侦查"><span class="nav-number">1.</span> <span class="nav-text">一. 侦查</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HTTrack"><span class="nav-number">1.1.</span> <span class="nav-text">1. HTTrack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Google指令"><span class="nav-number">1.2.</span> <span class="nav-text">2. Google指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-The-Harvester"><span class="nav-number">1.3.</span> <span class="nav-text">3. The Harvester</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-whois"><span class="nav-number">1.4.</span> <span class="nav-text">4. whois</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Netcraft"><span class="nav-number">1.5.</span> <span class="nav-text">5. Netcraft</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-host"><span class="nav-number">1.6.</span> <span class="nav-text">6. host</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-NS-lookup、Dig、fierce"><span class="nav-number">1.7.</span> <span class="nav-text">7. NS lookup、Dig、fierce</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-MetaGooFil"><span class="nav-number">1.8.</span> <span class="nav-text">8. MetaGooFil</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-其它"><span class="nav-number">1.9.</span> <span class="nav-text">9. 其它</span></a></li></ol></li></ol></div>
             
 
           </div>
