@@ -99,7 +99,7 @@
 <meta property="og:description" content="待更……">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/penetration_testing.jpg">
-<meta property="og:updated_time" content="2018-11-11T10:26:49.496Z">
+<meta property="og:updated_time" content="2018-11-11T10:41:07.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《渗透测试实践指南》笔记">
 <meta name="twitter:description" content="待更……">
@@ -377,15 +377,16 @@
       
 
       
-        <p><img src="/images/penetration_testing.jpg" alt=""></p>
+        <p><div align="center"><img src="/images/penetration_testing.jpg" alt=""></div></p>
 <p>待更……</p>
 <a id="more"></a>
 <hr>
 <h1 id="一-侦查"><a href="#一-侦查" class="headerlink" title="一. 侦查"></a>一. 侦查</h1><ul>
 <li>IP 列表 </li>
 <li>开源情报</li>
-<li>主动、被动<h2 id="1-HTTrack"><a href="#1-HTTrack" class="headerlink" title="1. HTTrack"></a>1. HTTrack</h2>网站复制机 : <code>httrack</code></li>
+<li>主动、被动</li>
 </ul>
+<h2 id="1-HTTrack"><a href="#1-HTTrack" class="headerlink" title="1. HTTrack"></a>1. HTTrack</h2><p>网站复制机 : <code>httrack</code></p>
 <h2 id="2-Google指令"><a href="#2-Google指令" class="headerlink" title="2. Google指令"></a>2. Google指令</h2><ol>
 <li><code>site:</code></li>
 <li><code>intitle:</code><br> <code>alintitle:index of</code>:web服务器上所有可用的索引目录列表</li>
@@ -393,20 +394,22 @@
 <li><code>cache:</code>:网页快照</li>
 <li><code>filetype:</code></li>
 </ol>
-<h2 id="3-The-Harvester"><a href="#3-The-Harvester" class="headerlink" title="3. The Harvester"></a>3. The Harvester</h2><p>搜索某网站的电子邮箱、子域名和主机</p>
-<p><code>theharvester -d target_domin -l _number -b google/LinkedIn/(all)</code></p>
+<h2 id="3-The-Harvester"><a href="#3-The-Harvester" class="headerlink" title="3. The Harvester"></a>3. The Harvester</h2><p>搜索某网站的电子邮箱、子域名和主机<br><code>theharvester -d target_domin -l _number -b google/LinkedIn/(all)</code></p>
 <h2 id="4-whois"><a href="#4-whois" class="headerlink" title="4. whois"></a>4. whois</h2><p>收集与目标网站相关的额外信息：ip、DNS、地址、电话等</p>
 <h2 id="5-Netcraft"><a href="#5-Netcraft" class="headerlink" title="5. Netcraft"></a>5. Netcraft</h2><p>ip、DNS、web服务器操作系统</p>
 <h2 id="6-host"><a href="#6-host" class="headerlink" title="6. host"></a>6. host</h2><p>主机名——ip翻译</p>
 <h2 id="7-NS-lookup、Dig、fierce"><a href="#7-NS-lookup、Dig、fierce" class="headerlink" title="7. NS lookup、Dig、fierce"></a>7. NS lookup、Dig、fierce</h2><p>DNS服务器中的主机记录</p>
 <p>1.NS lookup：</p>
-<p><pre><br>nslookup</pre></p>
-<blockquote>
-<p>server 8.8.8.8<br>set type = any / mx(邮件)<br>target_domin<br><br>2.Dig：<br><code>dig @target_ip -t AXFR(区域传输)</code></p>
-</blockquote>
+<pre>
+nslookup
+>server 8.8.8.8
+>set type = any / mx(邮件)
+>target_domin
+</pre>
+
+<p>2.Dig：<br><code>dig @target_ip -t AXFR(区域传输)</code></p>
 <p>3.fierce：<br><code>fierce -dns target_domin</code></p>
-<h2 id="8-MetaGooFil"><a href="#8-MetaGooFil" class="headerlink" title="8. MetaGooFil"></a>8. MetaGooFil</h2><p>提取元数据</p>
-<p><code>metagoofil -d target_domin -t pdf/doc... -n _number -o storage_dir -f output_file</code></p>
+<h2 id="8-MetaGooFil"><a href="#8-MetaGooFil" class="headerlink" title="8. MetaGooFil"></a>8. MetaGooFil</h2><p>提取元数据<br><code>metagoofil -d target_domin -t pdf/doc... -n _number -o storage_dir -f output_file</code></p>
 <h2 id="9-其它"><a href="#9-其它" class="headerlink" title="9. 其它"></a>9. 其它</h2><p>有关目标的完整档案</p>
 <ol>
 <li><a href="https://www.treatagent.com" target="_blank" rel="noopener">ThreatAgent Drone</a></li>
